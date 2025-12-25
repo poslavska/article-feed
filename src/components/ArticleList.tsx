@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../redux-state/store'
 import SearchArticle from './SearchArticle'
 import ArticleCard from './ArticleCard'
+import PaginationPanel from './PaginationPanel'
 
-type ArticleListProps = {
+export type ArticleListProps = {
   currentPage: number,
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>
 }
@@ -24,6 +25,7 @@ export default function ArticlesList({currentPage, setCurrentPage}: ArticleListP
           title={article.title} /> 
         )}
       </section>
+      <PaginationPanel currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </>
   )
 }

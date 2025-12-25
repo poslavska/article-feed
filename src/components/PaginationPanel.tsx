@@ -3,7 +3,9 @@ import { Pagination, Stack } from '@mui/material'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../redux-state/store'
 
-export default function PaginationPanel({currentPage, setCurrentPage}: ArticleListProps) {
+type PaginationProps = Omit<ArticleListProps, 'handleArticleClick'>
+
+export default function PaginationPanel({currentPage, setCurrentPage}: PaginationProps) {
   const totalArticles = useSelector((state: RootState) => state.articles.count)
 
   return (

@@ -4,10 +4,10 @@ import { setArticleCount, setArticles } from "./redux-state/article/articleSlice
 import type { AppDispatch } from "./redux-state/store"
 
 export async function getArticles(currentPage: number = 1, dispatch: AppDispatch) {
-  const offset = (currentPage - 1) * 10
+  const offset = (currentPage - 1) * 9
   
   try {
-    const response = await fetch(`https://api.spaceflightnewsapi.net/v4/articles/?ordering=-published_at&limit=10&offset=${offset}`)
+    const response = await fetch(`https://api.spaceflightnewsapi.net/v4/articles/?ordering=-published_at&limit=9&offset=${offset}`)
     const articlesData = await response.json()
 
     if (!articlesData?.results || articlesData.count === 0) {

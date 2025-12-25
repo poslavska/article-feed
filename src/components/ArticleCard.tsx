@@ -1,11 +1,14 @@
-import React from 'react'
 import { Card, CardActions, CardContent, CardMedia, Button, Typography, } from '@mui/material';
 import { ArrowForward, CalendarToday} from '@mui/icons-material';
 
 import type { ArticleType } from '../types';
 import { formatDate } from '../helpers';
 
-export default function ArticleCard({id, image_url, published_at, summary, title}: ArticleType) {
+type ArticleCardProps = ArticleType & {
+  handleArticleClick: (id: number) => void
+}
+
+export default function ArticleCard({id, image_url, published_at, summary, title, handleArticleClick}: ArticleCardProps) {  
   return (
     <Card sx={{ 
       maxWidth: 400, 
@@ -42,6 +45,7 @@ export default function ArticleCard({id, image_url, published_at, summary, title
             display: '-webkit-box',
             WebkitLineClamp: 2,
             WebkitBoxOrient: 'vertical', 
+            textAlign: "center"
           }} >
           {title}
         </Typography>
@@ -71,7 +75,9 @@ export default function ArticleCard({id, image_url, published_at, summary, title
            textTransform: "none",
            fontSize: "0.8125rem",
            fontWeight: 700,
-          }} size="small" endIcon={<ArrowForward />}>Read more</Button>
+          }} size="small" endIcon={<ArrowForward />}
+          onClick={() => handleArticleClick(id)}
+          >Read more</Button>
       </CardActions>
     </Card>
   )

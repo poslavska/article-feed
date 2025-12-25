@@ -1,6 +1,6 @@
 //?search, ?summary_contains, ?title_contains
 
-import { setArticleCount, setArticles } from "./redux-state/article/articleSlice"
+import { setArticleCount, setArticles, setCurrentArticle } from "./redux-state/article/articleSlice"
 import type { AppDispatch } from "./redux-state/store"
 
 export async function getArticles(currentPage: number = 1, dispatch: AppDispatch) {
@@ -21,6 +21,17 @@ export async function getArticles(currentPage: number = 1, dispatch: AppDispatch
     dispatch(setArticleCount(articlesData.count))
   } catch (error) {
     console.log("Error while fetching articles", error)
+  }
+}
+
+export async function getArticleById(id: number, dispatch: AppDispatch) {
+  try {
+    const response = await fetch(`https://api.spaceflightnewsapi.net/v4/articles/${id}/`)
+    const article = await response.json()
+
+    dispatch(setCurrentArticle(article))
+  } catch (error) {
+    console.log("Error while fetching your article", error)
   }
 }
 

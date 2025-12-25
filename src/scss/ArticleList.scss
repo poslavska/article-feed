@@ -1,0 +1,18 @@
+.articles-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2.1em;
+
+  @media (min-width: 870px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+  }
+
+  @media (min-width: 1300px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5em;
+  }
+}

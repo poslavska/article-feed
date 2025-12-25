@@ -1,0 +1,81 @@
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625em;
+  margin-bottom: 2.5em;
+}
+
+.filter-label {
+  font-weight: 600;
+}
+
+.filter-input-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  box-shadow: 0 8px 18px #f0f0f0;
+  border: 1px solid #EAEAEA;
+  border-radius: 5px;
+  padding: 0.8125em 1em;
+  max-width: 600px;
+
+  @media (min-width: 600px) {
+    padding: 0.8125em 1.25em;
+  }
+}
+
+.delete-btn, .search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.search-btn {
+  width: 20px;
+  height: 20px;
+}
+
+.delete-btn {
+  width: 18px;
+  height: 18px;
+}
+
+.vector-img, .delete-img {
+  width: 100%;
+}
+
+.left-filter {
+  display: flex;
+  gap: 0.5em;
+  flex: 1;
+  margin-right: 0.5em;
+
+  @media (min-width: 450px) {
+    margin-right: 0;
+  }
+
+  @media (min-width: 600px) {
+    gap: 1em;
+  }
+}
+
+.filter-input {
+  border: none;
+  flex: 1;
+  cursor: pointer;
+  max-width: 420px;
+  padding: 0.1em 0 0.1em 0.5em;
+}
+
+.filter-input:focus {
+  outline: 1px solid #457b9d;
+}
+
+.filter-input:focus-visible {
+  outline: none;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}

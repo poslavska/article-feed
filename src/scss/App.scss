@@ -1,13 +1,21 @@
 @use "./config";
 
-body {
+* {
   margin: 0;
   padding: 0;
+  font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
-  background-color: config.$white;
 }
 
 main {
-  width: 100%;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 2.25em 1.5em;
+  color: config.$black;
+  background-color: config.$white;
+
+  @media (min-width: 700px) {
+    padding: 3.125em 4.6875em 3.31em 4.6875em;
+  }
 }

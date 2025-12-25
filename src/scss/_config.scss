@@ -1,4 +1,15 @@
 // colors
-$white: white;
+$white: #FFFFFF;
+$black: #363636;
 
 // fonts
+$font-weights: ("Regular": 400, "SemiBold": 600, "Bold": 700);
+
+@each $name, $weight in $font-weights {
+  @font-face {
+    font-family: Montserrat;
+    src: url("../assets/fonts/Montserrat-#{$name}.ttf");
+    font-weight: $weight;
+    font-display: swap;
+  }
+}

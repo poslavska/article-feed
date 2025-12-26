@@ -1,12 +1,14 @@
 import type { ArticleListProps } from './ArticleList'
 import { Pagination, Stack } from '@mui/material'
-import { useSelector } from 'react-redux'
-import type { RootState } from '../redux-state/store'
 
-type PaginationProps = Omit<ArticleListProps, 'handleArticleClick'>
+type PaginationProps = Omit<ArticleListProps, 'handleArticleClick'> & {
+  searchBtnPressed: boolean
+  onSearchPageChange: (page: number) => void,
+  total: number
+}
 
-export default function PaginationPanel({currentPage, setCurrentPage}: PaginationProps) {
-  const totalArticles = useSelector((state: RootState) => state.articles.count)
+export default function PaginationPanel({currentPage, setCurrentPage,searchBtnPressed,
+  onSearchPageChange, total}: PaginationProps) {
 
   return (
     <Stack sx={{
@@ -14,9 +16,12 @@ export default function PaginationPanel({currentPage, setCurrentPage}: Paginatio
       alignItems: "center",
       mt: "1.625em"
     }}>
-      <Pagination count={Math.ceil(totalArticles / 9)} shape="rounded"
+      <Pagination count={Math.ceil(total / 9)} shape="rounded"
         page={currentPage}
-        onChange={(_, page) => setCurrentPage(page)}
+        onChange={(_, page) => {
+          setCurrentPage(page)
+           if (searchBtnPressed) onSearchPageChange(page)
+        }}
       />
     </Stack> 
   )

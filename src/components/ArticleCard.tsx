@@ -3,12 +3,16 @@ import { ArrowForward, CalendarToday} from '@mui/icons-material';
 
 import type { ArticleType } from '../types';
 import { formatDate } from '../helpers';
+import type { JSX } from 'react';
 
 type ArticleCardProps = ArticleType & {
-  handleArticleClick: (id: number) => void
+  handleArticleClick: (id: number) => void,
+  highlightedTitle?: string | (string | JSX.Element)[],
+  highlightedSummary?: string | (string | JSX.Element)[]
 }
 
-export default function ArticleCard({id, image_url, published_at, summary, title, handleArticleClick}: ArticleCardProps) {  
+export default function ArticleCard({id, image_url, published_at, summary, 
+  title, handleArticleClick, highlightedTitle, highlightedSummary}: ArticleCardProps) {  
   return (
     <Card sx={{ 
       maxWidth: 400, 
@@ -44,10 +48,9 @@ export default function ArticleCard({id, image_url, published_at, summary, title
             textOverflow: 'ellipsis',
             display: '-webkit-box',
             WebkitLineClamp: 2,
-            WebkitBoxOrient: 'vertical', 
-            textAlign: "center"
+            WebkitBoxOrient: 'vertical'
           }} >
-          {title}
+          {highlightedTitle ?? title}
         </Typography>
         <Typography variant="body1" component="p"
           sx={{
@@ -57,7 +60,7 @@ export default function ArticleCard({id, image_url, published_at, summary, title
             WebkitLineClamp: 4,
             WebkitBoxOrient: 'vertical',
           }} >
-          {summary}
+          {highlightedSummary ?? summary}
         </Typography>
       </CardContent>
       <CardActions sx={{ 

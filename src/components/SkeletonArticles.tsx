@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Skeleton, Stack } from '@mui/material'
 
-export default function SkeletonArticles() {
+export default function SkeletonArticles({includeInput}: {includeInput: boolean}) {
   const skeletonItems = Array.from({ length: 6 }, (_, i) => i)
 
   const skeletonElements = skeletonItems.map(index => (
@@ -21,8 +21,11 @@ export default function SkeletonArticles() {
 
   return (
     <>
-      <Skeleton variant="text" sx={{ fontSize: '1rem', width: '180px' }} />
-      <Skeleton variant="text" sx={{ fontSize: '2.75rem', width: '310px', mb: "0.75em" }} />
+      {includeInput && 
+        <>
+          <Skeleton variant="text" sx={{ fontSize: '1rem', width: '180px' }} />
+          <Skeleton variant="text" sx={{ fontSize: '2.75rem', width: '310px', mb: "0.75em" }} />
+        </>}
       <Box
       sx={{
         display: 'grid',

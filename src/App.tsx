@@ -7,6 +7,7 @@ import ArticlePage from './components/ArticlePage'
 import SkeletonArticle from './components/SkeletonArticle'
 import { useDispatch } from 'react-redux'
 import type { AppDispatch } from './redux-state/store'
+import useFilter from './useFilter'
 
 export default function App() {
   const dispatch = useDispatch<AppDispatch>()
@@ -17,10 +18,14 @@ export default function App() {
   const [articleClicked, setArticleClicked] = useState(false)
   const [articleLoading, setArticleLoading] = useState(false)
 
+  const { searchBtnPressed } = useFilter()
+
   useEffect(() => {
+    if (searchBtnPressed) return
+
     setIsLoading(true)
     getArticles(currentPage, dispatch).finally(() => setIsLoading(false))
-  }, [currentPage])
+  }, [currentPage, searchBtnPressed])
   
   function handleArticleClick(id: number) {
     setArticleClicked(true)
@@ -32,7 +37,7 @@ export default function App() {
     <>
       {articleClicked ? articleLoading ? <SkeletonArticle />
       : <ArticlePage setArticleClicked={setArticleClicked} /> : 
-          isLoading ? <main><SkeletonArticles /></main> : 
+          isLoading ? <main><SkeletonArticles includeInput={true} /></main> : 
           <main>
             <ArticlesList 
             currentPage={currentPage} 

@@ -1,4 +1,4 @@
-import { setArticleCount, setArticles, setCurrentArticle, setFilteredCount, setFilterResults } from "./redux-state/article/articleSlice"
+import { setArticleCount, setArticles, setCurrentArticle, setFilteredCount, setFilterResults } from "./redux-state/articleSlice"
 import type { AppDispatch } from "./redux-state/store"
 
 export async function getArticles(currentPage: number = 1, dispatch: AppDispatch) {

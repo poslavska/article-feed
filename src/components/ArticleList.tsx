@@ -8,7 +8,7 @@ import vector from '../assets/vector.svg'
 import clear from '../assets/clear-img.png'
 import useFilter from '../useFilter'
 import SkeletonArticles from './SkeletonArticles'
-import { setSearchTerm } from '../redux-state/article/articleSlice'
+import { setSearchTerm } from '../redux-state/articleSlice'
 
 export type ArticleListProps = {
   currentPage: number,

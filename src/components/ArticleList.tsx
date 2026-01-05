@@ -37,6 +37,8 @@ export default function ArticlesList({currentPage, setCurrentPage, handleArticle
   )
   const paginatedResults = [...titleMatches, ...summaryMatches]
 
+  const hasMatches = titleMatches.length > 0 || summaryMatches.length > 0
+
   function handleEnterKey(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'Enter') {
       e.preventDefault()
@@ -74,11 +76,12 @@ export default function ArticlesList({currentPage, setCurrentPage, handleArticle
       </section>
       
       {isFilterLoading ? <SkeletonArticles includeInput={false} /> 
-        : (titleMatches.length > 0 || summaryMatches.length > 0) && 
-        <>
-          <p className='filter-label'>Results: {totalFilteredArticles}</p>
-          <hr className='filter-line' />
-        </>
+        : hasMatches ?
+          <>
+            <p className='filter-label'>Results: {totalFilteredArticles}</p>
+            <hr className='filter-line' />
+          </>
+        : (searchBtnPressed && <p className='no-results-msg'>No results found</p>)
       }
 
       <section className='articles-wrapper'>

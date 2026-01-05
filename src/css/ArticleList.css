@@ -109,4 +109,9 @@
 
 button:disabled {
   cursor: not-allowed;
+}
+
+.no-results-msg {
+  font-weight: 600;
+  font-size: 1.25rem;
 }/*# sourceMappingURL=ArticleList.css.map */

@@ -1,14 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit"
-import type { ArticleShort, ArticleType } from "../../types"
+import type { ArticleShort, ArticleType } from "../types"
 
-const initialState: { count: number, results: ArticleType[], currentArticle: ArticleShort, 
-  filteredResults: ArticleType[], filteredCount: number, searchBtnPressed: boolean, 
-  keywords: string[], searchTerm: string} = { 
+const initialArticlesState: { count: number, results: ArticleType[], currentArticle: ArticleShort, 
+  filteredResults: ArticleType[], filteredCount: number} = { 
   count: 0, 
   results: [], 
   currentArticle: { id: 0, image_url: "", summary: "", title: "" },
   filteredResults: [],
-  filteredCount: 0,
+  filteredCount: 0
+}
+
+const initialSearchState: { searchBtnPressed: boolean, 
+  keywords: string[], searchTerm: string } = {
   searchBtnPressed: false,
   keywords: [],
   searchTerm: ""
@@ -16,7 +19,7 @@ const initialState: { count: number, results: ArticleType[], currentArticle: Art
 
 export const articlesSlice = createSlice({
   name: "articles",
-  initialState,
+  initialState: initialArticlesState,
   reducers: {
     setArticles: (state, action) => {
       state.results = action.payload
@@ -36,7 +39,14 @@ export const articlesSlice = createSlice({
     },
     setFilteredCount: (state, action) => {
       state.filteredCount = action.payload
-    },
+    }
+  }
+})
+
+export const searchInputSlice = createSlice({
+  name: "search",
+  initialState: initialSearchState,
+  reducers: {
     setSearchBtnPressed: (state, action) => {
       state.searchBtnPressed = action.payload
     },
@@ -50,7 +60,10 @@ export const articlesSlice = createSlice({
 })
 
 export const { setArticles, setArticleCount, setCurrentArticle, setFilterResults, 
-  clearFilteredArr, setFilteredCount, setSearchBtnPressed, setKeywords, setSearchTerm
+  clearFilteredArr, setFilteredCount
  } = articlesSlice.actions
 
-export default articlesSlice.reducer
+export const { setSearchBtnPressed, setKeywords, setSearchTerm } = searchInputSlice.actions
+
+export const articlesReducer = articlesSlice.reducer
+export const searchReducer = searchInputSlice.reducer
